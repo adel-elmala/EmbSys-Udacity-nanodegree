@@ -1,0 +1,12 @@
+Tester Name: Adel Refaat
+Function Name: isAmountAvailable
+Test Case 1: 
+Input Data: transAmount - 4000 
+Expected Result:0
+Actual Result:0
+
+Test Case 2: transAmount - 8000 
+Input Data:  
+Expected Result:4
+Actual Result:4
+

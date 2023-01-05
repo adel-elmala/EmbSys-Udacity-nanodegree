@@ -1,0 +1,22 @@
+Tester Name: Adel Refaat
+Function Name: recieveTransactionData
+Test Case 1: 
+Input Data: PAN - 5989374615436851 
+Expected Result:3
+Actual Result:3
+
+Test Case 2: 
+Input Data: (PAN - 8989374615436851) -- (transAmount - 5000)  
+Expected Result:1
+Actual Result:1
+
+Test Case 3: 
+Input Data: (PAN - 5807007076043875) -- blocked  
+Expected Result:2
+Actual Result:2
+
+Test Case 3: 
+Input Data: (PAN - 8989374615436851) -- blocked  
+Expected Result:4
+Actual Result:4
+

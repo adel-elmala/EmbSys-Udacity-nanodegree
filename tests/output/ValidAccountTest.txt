@@ -1,0 +1,12 @@
+Tester Name: Adel Refaat
+Function Name: isValidAccount
+Test Case 1: 
+Input Data: PAN - 2314007066043425 
+Expected Result:0
+Actual Result:0
+
+Test Case 2: 
+Input Data: PAN - 1414007066043425 
+Expected Result:3
+Actual Result:3
+

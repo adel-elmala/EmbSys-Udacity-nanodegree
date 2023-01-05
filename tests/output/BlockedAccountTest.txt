@@ -1,0 +1,12 @@
+Tester Name: Adel Refaat
+Function Name: isBlockedAccount
+Test Case 1: 
+Input Data: state - Running 
+Expected Result:0
+Actual Result:0
+
+Test Case 2: 
+Input Data: state - bocked 
+Expected Result:5
+Actual Result:5
+
