@@ -10,26 +10,37 @@ void appStart(void)
 {
     ST_cardData_t userCard = {0};
     ST_terminalData_t term = {0};
+    ST_transaction_t trans = {0};
 
     // card
     getCardHolderName(&userCard);
     getCardExpiryDate(&userCard);
     getCardPAN(&userCard);
+
     // terminal
+    setMaxAmount(&term, MAX_AMOUNT);
     getTransactionDate(&term);
     if (isCardExpired(&userCard, &term) == EXPIRED_CARD)
-        exit(EXPIRED_CARD);
+    {
+        trans.transState = EXPIRED_CARD;
+        // exit(EXPIRED_CARD);
+    }
 
-    setMaxAmount(&term, MAX_AMOUNT);
     getTransactionAmount(&term);
     if (isBelowMaxAmount(&term) == EXCEED_MAX_AMOUNT)
-        exit(EXCEED_MAX_AMOUNT);
+    {
+        trans.transState = EXCEED_MAX_AMOUNT;
+        // exit(EXCEED_MAX_AMOUNT);
+    }
 
     // server
-    ST_transaction_t trans = {0};
+
     trans.cardHolderData = userCard;
     trans.terminalData = term;
-    recieveTransactionData(&trans);
+    if (trans.transState == APPROVED)
+        recieveTransactionData(&trans);
+    else
+        saveTransaction(&trans);
 }
 
 int main()

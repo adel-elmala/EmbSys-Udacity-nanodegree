@@ -8,7 +8,7 @@ ST_accountsDB_t accountsDB[255] = {{2000.0, RUNNING, "8989374615436851"},
                                    {100000.0, BLOCKED, "5807007076043875"},
                                    {9500.0, RUNNING, "8506006067047538"},
                                    {102.0, RUNNING, "2314007066043425"},
-                                   {688030.0, RUNNING, "8107023056047815"}};
+                                   {6880030.0, RUNNING, "8107023056047815"}};
 
 ST_transaction_t transDB[255] = {0};
 
@@ -40,6 +40,8 @@ EN_serverError_t isAmountAvailable(ST_terminalData_t *termData, ST_accountsDB_t 
     else
         return SERVER_OK;
 }
+
+char *printTransState(enum EN_transState_t st);
 void listSavedTransactions(void)
 {
     for (int i = 0; i < ntrans; ++i)
@@ -48,12 +50,31 @@ void listSavedTransactions(void)
         fprintf(stdout, "Transaction Sequence Number: %d\n", transDB[i].transactionSequenceNumber);
         fprintf(stdout, "Transaction Date: %s\n", transDB[i].terminalData.transactionDate);
         fprintf(stdout, "Transaction Amount: %.2f\n", transDB[i].terminalData.transAmount);
-        fprintf(stdout, "Transaction State: %d\n", transDB[i].transState);
+        fprintf(stdout, "Transaction State: %s\n", printTransState(transDB[i].transState));
         fprintf(stdout, "Terminal Max Amount: %.2f\n", transDB[i].terminalData.maxTransAmount);
         fprintf(stdout, "Cardholder Name: %s\n", transDB[i].cardHolderData.cardHolderName);
         fprintf(stdout, "PAN: %s\n", transDB[i].cardHolderData.primaryAccountNumber);
         fprintf(stdout, "Card Expiration Date: %s\n", transDB[i].cardHolderData.cardExpirationDate);
         fprintf(stdout, "#########################\n");
+    }
+}
+
+char *printTransState(EN_transState_t st)
+{
+    switch (st)
+    {
+    case APPROVED:
+        return "APPROVED";
+    // case DECLINED_INSUFFECIENT_FUND:
+    //     return "DECLINED_INSUFFECIENT_FUND";
+    // case DECLINED_STOLEN_CARD:
+    //     return "DECLINED_STOLEN_CARD";
+    // case FRAUD_CARD:
+    //     return "FRAUD_CARD";
+    // case INTERNAL_SERVER_ERROR:
+    //     return "INTERNAL_SERVER_ERROR";
+    default:
+        return "declined";
     }
 }
 
